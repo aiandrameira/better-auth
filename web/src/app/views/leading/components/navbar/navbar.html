@@ -1,0 +1,59 @@
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
+    <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+        <a class="flex items-center gap-2" href="#">
+            <img [src]="theme() === 'light' ? './img/logo.svg' : './img/logo-dark.svg'" width="32" alt="Logo" />
+        </a>
+
+        <div class="flex items-center gap-x-2">
+            <button class="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-muted"
+                ai-menu
+                [menu]="userMenu">
+                <ai-avatar
+                    [fallback]="userInitials()"
+                    [image]="user()?.image ?? ''"
+                    [alt]="user()?.name ?? ''"
+                    size="sm"
+                    shape="circle" />
+                <span class="hidden text-sm font-medium text-primary sm:block">
+                    {{ userDisplayName() || "Usuário" }}
+                </span>
+                <ai-icon size="sm" icon="arrow-down-s" />
+            </button>
+
+            <ai-menu-content #userMenu="aiMenuContent">
+                <ai-menu-label>Conta</ai-menu-label>
+                <div class="px-2">
+                    <p class="truncate font-title text-sm font-medium text-primary flex items-center gap-x-1">
+                        {{ user()?.name }}
+                        @if (user()?.emailVerified) {
+                            <ai-icon size="xs" icon="verified-badge" type="fill" class="text-accent" />
+                        }
+                    </p>
+                    <p class="truncate text-xs font-semibold text-muted-foreground">
+                        {{ user()?.email }}
+                    </p>
+                </div>
+
+                <ai-separator />
+
+                <ai-menu-item (click)="onOpenProfile()">
+                    <ai-icon size="sm" icon="user-settings" />
+                    Perfil
+                </ai-menu-item>
+
+                <ai-menu-item (click)="onLogout()">
+                    <ai-icon size="sm" icon="logout-circle" />
+                    Sair
+                </ai-menu-item>
+            </ai-menu-content>
+
+            <ai-separator orientation="vertical" class="h-4" />
+
+            <ai-button variant="ghost" [icon]="theme() === 'light' ? 'moon' : 'sun'" (click)="onChangeTheme()" />
+
+            <ai-separator orientation="vertical" class="h-4" />
+
+            <ai-badge icon="time" variant="accent">{{ expiration() | duration }}</ai-badge>
+        </div>
+    </div>
+</header>

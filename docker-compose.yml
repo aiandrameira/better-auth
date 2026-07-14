@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: ai_auth
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: ai_auth
+    ports:
+      - "65432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:8.6.0
+    container_name: ai_redis
+    ports:
+      - "6379:6379"
+
+  redis-insight:
+    image: redis/redisinsight:3.0.3
+    container_name: redis_insight
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis
+    volumes:
+      - redisinsight_data:/data
+
+  api:
+    build:
+      context: ./api
+    container_name: ai_api
+    env_file:
+      - ./api/.env
+    environment:
+      DATABASE_URL: postgresql://docker:docker@postgres:5432/ai_auth
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+
+  web:
+    build:
+      context: ./web
+    container_name: ai_web
+    ports:
+      - "4201:80"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redisinsight_data:

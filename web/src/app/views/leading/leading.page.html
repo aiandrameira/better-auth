@@ -1,0 +1,49 @@
+<div class="h-screen overflow-y-auto">
+    <ai-navbar />
+
+    <main class="min-h-[calc(100vh-3.75rem)] bg-background flex flex-col">
+        <section class="mx-auto flex max-w-4xl pt-32 lg:pt-24 flex-col items-center justify-center px-6 pb-4 text-center">
+            <ai-badge variant="outline" icon="sparkling" class="mb-6 pr-3 border-accent text-accent font-semibold font-text">
+                Seja bem-vindo de volta
+            </ai-badge>
+
+            <h1 class="font-title mb-4 text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold leading-tight tracking-tight text-primary">
+                Centralize autenticação, <br />
+                organizações e <span class="text-accent">acesso </span> entre aplicações.
+            </h1>
+
+            <p class="mb-6 max-w-xl text-base md:text-lg font-text font-semibold text-muted-foreground">
+                Plataforma de autenticação com SSO, organizações, permissões e acesso instantâneo entre aplicações.
+            </p>
+        </section>
+
+        <section class="mx-auto w-full max-w-6xl px-6 pb-8 flex-1">
+            <ai-carousel [loop]="true" [showDots]="true" [showNav]="true" class="w-full">
+                <ai-carousel-item class="grid w-full grid-cols-1 place-items-center gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3">
+                        @for (empty of emptys(); track empty.id) {
+                            <div class="w-full max-w-80 p-4 border border-border rounded-lg">
+                                <div class="space-y-2 mb-2">
+                                    <ai-skeleton class="h-2 w-48" />
+                                    <ai-skeleton class="h-2" />
+                                    <ai-skeleton class="h-2" />
+                                </div>
+                                <ai-skeleton class="flex w-full items-center justify-center h-48 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" class="fill-muted-foreground/60"><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 162l-84-25q-13-54-56-88.5T480-640q-66 0-113 47t-47 113q0 57 34.5 100t88.5 56l25 84Zm48 158q-9 2-18 2h-18q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480v18q0 9-2 18l-78-24v-12q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93h12l24 78Zm305 22L650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg>
+                                </ai-skeleton>
+                            </div>
+                        }
+                    </ai-carousel-item>
+            </ai-carousel>
+        </section>
+    </main>
+
+    <footer class="border-t border-border bg-background">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 h-14">
+            <p class="text-xs text-muted-foreground">Feito com ❤️ por @aiandralves. | © {{ date | date:'yyyy' }}.</p>
+            <div class="flex items-center gap-2">
+                <a aria-label="GitHub" ai-button variant="ghost" size="sm" icon="github" target="_blank" href="https://github.com/aiandrameira/ai-web"></a>
+                <a aria-label="LinkedIn" ai-button variant="ghost" size="sm" icon="linkedin" target="_blank" href="https://www.linkedin.com/in/aiandralves/"></a>
+            </div>
+        </div>
+    </footer>
+</div>

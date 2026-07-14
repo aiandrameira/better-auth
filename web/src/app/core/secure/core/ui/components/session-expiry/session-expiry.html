@@ -1,0 +1,47 @@
+@if (isWarning() && !dismissed()) {
+    <div class="fixed inset-0 z-9999 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+        <div class="relative z-10 w-full max-w-sm mx-4 bg-background border border-border rounded-2xl shadow-xl p-6 flex flex-col gap-y-5">
+            <div class="flex items-start justify-between">
+                <h2 class="font-title font-semibold text-lg text-primary">Sessão expirando</h2>
+                <ai-button icon="close" type="button" variant="ghost" size="xs" (click)="dismiss()" aria-label="Fechar" />
+            </div>
+
+            <div class="flex items-center gap-x-3">
+                <span [class]="'flex size-10 shrink-0 items-center justify-center rounded-full transition-colors duration-500 ' + (isCritical() ? 'bg-destructive/15 text-destructive' : 'bg-warning/15 text-warning')">
+                    <ai-icon size="default" icon="hourglass" />
+                </span>
+                <div class="flex flex-col">
+                    <p class="font-title font-semibold text-sm text-primary">Sessão expirando</p>
+                    <p class="font-text text-sm text-muted-foreground">Seu tempo está acabando</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-y-3 rounded-xl bg-muted py-4 px-4">
+                <p class="font-text text-xs font-medium text-muted-foreground">Tempo restante</p>
+                <p [class]="'font-title text-3xl font-bold tabular-nums transition-colors duration-500 ' + (isCritical() ? 'text-destructive' : 'text-warning')">
+                    {{ remainingTime() | duration }}
+                </p>
+
+                <ai-progress-bar
+                    class="w-full"
+                    size="sm"
+                    [progress]="warningProgress()"
+                    [barClass]="isCritical() ? 'bg-destructive' : 'bg-warning'" />
+            </div>
+
+            <div class="flex flex-col gap-y-1 text-center">
+                <p class="font-title text-sm font-semibold text-primary">Deseja permanecer conectado?</p>
+                <p class="font-text text-sm text-muted-foreground">
+                    Se não escolher nada, você será desconectado automaticamente quando o tempo expirar.
+                </p>
+            </div>
+
+            <div class="flex gap-x-3">
+                <ai-button full variant="destructive" fill="line" shape="circle" (click)="leave()">Não, deslogar</ai-button>
+                <ai-button full variant="primary" shape="circle" (click)="renew()">Sim, renovar sessão</ai-button>
+            </div>
+        </div>
+    </div>
+}

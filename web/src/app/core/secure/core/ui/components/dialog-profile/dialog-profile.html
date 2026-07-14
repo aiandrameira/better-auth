@@ -1,0 +1,22 @@
+<div class="flex flex-col gap-y-4 pt-1">
+    <div class="flex flex-col items-center gap-y-2 pb-2">
+        <ai-avatar [image]="data.image ?? ''" [fallback]="initials()" [alt]="data.name" size="xl" shape="circle" />
+
+        <div class="flex items-center gap-x-1">
+            <p class="font-title text-base font-semibold text-primary">{{ data.name }}</p>
+            @if (data.emailVerified) {
+                <ai-icon size="xs" icon="verified-badge" type="fill" class="text-accent" />
+            }
+        </div>
+    </div>
+
+    <ai-input label="E-mail" type="email" [maxlength]="150" [formField]="form.email" />
+    <ai-input label="Nome" [maxlength]="60" [formField]="form.name" />
+
+    <div class="flex justify-end gap-x-2 pt-2">
+        <ai-button variant="default" type="button" [disabled]="loading()" (click)="onCancel()">Cancelar</ai-button>
+        <ai-button variant="primary" type="button" [loading]="loading()" (click)="onSave()">
+            {{ loading() ? "Salvando" : "Salvar" }}
+        </ai-button>
+    </div>
+</div>

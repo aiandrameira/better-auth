@@ -1,0 +1,30 @@
+{
+    "name": "api",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "bun run --watch src/index.ts",
+        "format": "biome format --write",
+        "db:generate": "bun --env-file .env --bun drizzle-kit generate",
+        "db:migrate": "bun --env-file .env --bun drizzle-kit migrate",
+        "studio": "bun --env-file .env --bun drizzle-kit studio"
+    },
+    "dependencies": {
+        "@elysia/openapi": "^1.4.15",
+        "@elysiajs/cors": "^1.4.2",
+        "@elysiajs/cron": "^1.4.2",
+        "better-auth": "^1.6.14",
+        "drizzle-orm": "^0.45.2",
+        "elysia": "latest",
+        "nodemailer": "^8.0.10",
+        "pg": "^8.21.0",
+        "resend": "^6.12.4",
+        "zod": "^4.4.3"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.4.16",
+        "@types/nodemailer": "^8.0.0",
+        "bun-types": "latest",
+        "drizzle-kit": "^0.31.10"
+    },
+    "module": "src/index.js"
+}
