@@ -9,7 +9,8 @@ FROM base AS runner
 ENV NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN chmod +x docker-entrypoint.sh
 
 EXPOSE 3000
 
-CMD ["bun", "run", "src/index.ts"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
