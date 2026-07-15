@@ -12,6 +12,10 @@
     Modern authentication boilerplate with email/password, OAuth, session management and organization support.
 </p>
 
+<p align="center">
+    <img src="./preview.png" width="800" alt="preview" />
+</p>
+
 ---
 
 ## 📚 Conteúdo
