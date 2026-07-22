@@ -250,7 +250,9 @@ openssl rand -hex 32
 
 1. Acesse o [Google Cloud Console](https://console.cloud.google.com/).
 2. Crie um novo projeto (ou selecione um existente).
-3. Vá em **APIs e Serviços → Tela de consentimento OAuth** e configure o app (nome, e-mail de suporte, escopos básicos `email` e `profile`).
+3. Vá em **APIs e Serviços → Tela de consentimento OAuth** e configure o app:
+   - Tipo: Externo.
+   - Preenche nome do app, email de suporte, domínio autorizado
 4. Vá em **APIs e Serviços → Credenciais → Criar credenciais → ID do cliente OAuth**.
 5. Tipo de aplicativo: **Aplicativo da Web**.
 6. Em **Origens JavaScript autorizadas**, adicione:
